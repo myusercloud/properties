@@ -30,7 +30,8 @@ import {
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { useNavigate } from "react-router-dom";
-import { FiSearch, FiMoreVertical, FiUserPlus, FiFilter, FiDownload } from "react-icons/fi";
+import { FiSearch, FiMoreVertical, FiUserPlus, FiFilter, FiDownload, FiArrowLeft } from "react-icons/fi";
+
 
 const Tenants = () => {
   const [tenants, setTenants] = useState([]);
@@ -64,33 +65,49 @@ const Tenants = () => {
   return (
     <Box p={{ base: 4, md: 10 }} bg="#F7FAFC" minH="100vh">
       {/* Header Section */}
-      <Flex justify="space-between" align="flex-end" mb={8}>
-        <Box>
-          <Heading size="lg" fontWeight="800" letterSpacing="tight">Tenant Directory</Heading>
-          <Text color="gray.500" fontSize="sm">
-            You have {tenants.length} total residents registered.
-          </Text>
-        </Box>
+{/* Header Section */}
+<Flex justify="space-between" align="center" mb={8}>
+  <HStack spacing={4}>
+    <IconButton
+      icon={<FiArrowLeft />}
+      aria-label="Go Back"
+      variant="ghost"
+      bg="white"
+      shadow="sm"
+      onClick={() => navigate("/caretaker")}
+    />
 
-        <HStack spacing={3}>
-          <Button 
-            leftIcon={<FiDownload />} 
-            variant="outline" 
-            bg="white" 
-            display={{ base: "none", md: "flex" }}
-          >
-            Export
-          </Button>
-          <Button
-            leftIcon={<FiUserPlus />}
-            colorScheme="blue"
-            shadow="0px 4px 12px rgba(66, 153, 225, 0.3)"
-            onClick={() => navigate("/create-tenant")}
-          >
-            Add Tenant
-          </Button>
-        </HStack>
-      </Flex>
+    <Box>
+      <Heading size="lg" fontWeight="800" letterSpacing="tight">
+        Tenant Directory
+      </Heading>
+      <Text color="gray.500" fontSize="sm">
+        You have {tenants.length} total residents registered.
+      </Text>
+    </Box>
+  </HStack>
+
+  <HStack spacing={3}>
+    <Button 
+      leftIcon={<FiDownload />} 
+      variant="outline" 
+      bg="white" 
+      display={{ base: "none", md: "flex" }}
+    >
+      Export
+    </Button>
+
+    <Button
+      leftIcon={<FiUserPlus />}
+      colorScheme="blue"
+      shadow="0px 4px 12px rgba(66, 153, 225, 0.3)"
+      onClick={() => navigate("/create-tenant")}
+    >
+      Add Tenant
+    </Button>
+  </HStack>
+</Flex>
+
 
       {/* Utilities: Search and Filter */}
       <Stack direction={{ base: "column", md: "row" }} justify="space-between" mb={6} spacing={4}>
@@ -186,6 +203,9 @@ const Tenants = () => {
                       <MenuList rounded="xl" shadow="xl" border="none">
                         <MenuItem onClick={() => navigate(`/tenants/${tenant.id}`)}>View Profile</MenuItem>
                         <MenuItem>Edit Lease</MenuItem>
+                        <MenuItem onClick={() => navigate(`/tenants/${tenant.id}/edit`)}>
+                            Update Tenant Info
+                        </MenuItem>
                         <MenuItem color="red.500">Remove Tenant</MenuItem>
                       </MenuList>
                     </Menu>

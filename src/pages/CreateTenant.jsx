@@ -14,6 +14,7 @@ import {
   InputLeftElement,
   Icon,
   Divider,
+  Select,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "../api/axios";
@@ -35,6 +36,8 @@ const CreateTenant = () => {
     phone: "",
     nationalId: "",
     emergencyContact: "",
+    unitId: "",
+    leaseStartDate: "",
   });
 
   const handleChange = (e) => {

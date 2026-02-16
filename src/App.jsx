@@ -5,6 +5,9 @@ import TenantDashboard from "./pages/TenantDashboard";
 import CreateTenant from "./pages/CreateTenant";
 import Tenants from "./pages/Tenants";
 import TenantProfile from "./pages/TenantProfile";
+import TenantDetails from "./pages/TenantDetails";
+import EditTenant from "./pages/EditTenant";
+
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
         <Route path="/create-tenant" element={<CreateTenant />} />
         <Route path="/allTenants" element={<Tenants />} />
         <Route path="/tenant/profile" element={<TenantProfile />} />
+        <Route path="/tenants/:id" element={<TenantDetails />} />
+        <Route path="/tenants/:id/edit" element={<EditTenant />} />
+
       </Routes>
     </BrowserRouter>
   );
