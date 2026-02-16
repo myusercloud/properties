@@ -4,6 +4,7 @@ import CaretakerDashboard from "./pages/CaretakerDashboard";
 import TenantDashboard from "./pages/TenantDashboard";
 import CreateTenant from "./pages/CreateTenant";
 import Tenants from "./pages/Tenants";
+import TenantProfile from "./pages/TenantProfile";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/tenant" element={<TenantDashboard />} />
         <Route path="/create-tenant" element={<CreateTenant />} />
         <Route path="/allTenants" element={<Tenants />} />
+        <Route path="/tenant/profile" element={<TenantProfile />} />
       </Routes>
     </BrowserRouter>
   );
