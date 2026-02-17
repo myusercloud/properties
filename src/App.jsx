@@ -7,6 +7,8 @@ import Tenants from "./pages/Tenants";
 import TenantProfile from "./pages/TenantProfile";
 import TenantDetails from "./pages/TenantDetails";
 import EditTenant from "./pages/EditTenant";
+import Units from "./pages/Units";
+
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
         <Route path="/tenant/profile" element={<TenantProfile />} />
         <Route path="/tenants/:id" element={<TenantDetails />} />
         <Route path="/tenants/:id/edit" element={<EditTenant />} />
-
+        <Route path="/units" element={<Units />} />
       </Routes>
     </BrowserRouter>
   );

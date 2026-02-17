@@ -41,6 +41,7 @@ import {
   FiPlus,
   FiActivity,
   FiCreditCard,
+  FiGrid,
 } from "react-icons/fi";
 
 import { useNavigate, useLocation } from "react-router-dom";
@@ -98,6 +99,13 @@ const Dashboard = () => {
             active={location.pathname === "/tenants"}
           >
             Tenants
+          </NavItem>
+          <NavItem
+            icon={FiGrid}
+            to="/units"
+            active={location.pathname === "/units"}
+          >
+            Units
           </NavItem>
 
           <NavItem icon={FiCreditCard}>Payments</NavItem>
