@@ -31,7 +31,7 @@ import {
   Progress,
   Tooltip,
   Divider,
-  C
+  Center
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
