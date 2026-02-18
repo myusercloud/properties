@@ -204,13 +204,13 @@ const Units = () => {
                     </Badge>
                   </Td>
                   <Td>
-                    {unit.tenant ? (
-                      <HStack>
-                        <Icon as={FiUser} color="gray.400" fontSize="xs" />
-                        <Text fontSize="sm" fontWeight="medium">{unit.tenant.user.name}</Text>
-                      </HStack>
+                    {unit.leases && unit.leases.length > 0 ? (
+                        <HStack>
+                            < Icon as={FiUser} color="gray.400" />
+                            <Text fontSize="sm" fontWeight="medium">{unit.leases[0].tenant.user.name}</Text>
+                        </HStack>
                     ) : (
-                      <Text fontSize="sm" color="gray.300">—</Text>
+                        <Text fontSize="sm" color="gray.500">_</Text>
                     )}
                   </Td>
                   <Td>

@@ -55,7 +55,10 @@ const EditTenant = () => {
   useEffect(() => {
     const fetchTenant = async () => {
       try {
-        const res = await axios.get(`/tenants/${id}`);
+        const token = localStorage.getItem("token");
+        const res = await axios.get(`/tenants/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         const tenant = res.data;
 
@@ -67,7 +70,11 @@ const EditTenant = () => {
           emergencyContact: tenant.emergencyContact || "",
         });
 
-        setCurrentUnit(tenant.unit || null);
+        const activeLease = tenant.leases?.find(
+          (lease) => lease.status === "ACTIVE"
+        );
+
+        setCurrentUnit(activeLease?.unit || tenant.unit || null);
         setLeaseStartDate(
           tenant.leaseStartDate
             ? new Date(tenant.leaseStartDate).toLocaleDateString()

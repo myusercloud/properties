@@ -27,6 +27,7 @@ import {
   FiCreditCard,
   FiAlertCircle,
   FiArrowLeft,
+  FiDollarSign,
 } from "react-icons/fi";
 
 const CreateTenant = () => {
@@ -65,42 +66,48 @@ const CreateTenant = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!form.unitId || !form.leaseStartDate) {
-      toast({
-        title: "Missing Information",
-        description: "Please assign a unit and lease start date.",
-        status: "warning",
-        duration: 3000,
-      });
-      return;
-    }
-
     setIsLoading(true);
 
     try {
-      await axios.post("/tenants", form);
-
+      const token = localStorage.getItem("token");
+      await axios.post(
+        "/caretaker/onboard-tenant",
+        {
+          name: form.name,
+          email: form.email,
+          password: form.password,
+          phone: form.phone,
+          nationalId: form.nationalId,
+          emergencyContact: form.emergencyContact,
+          unitId: form.unitId,
+          startDate: form.leaseStartDate,
+          depositAmount: form.depositAmount,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       toast({
-        title: "Success",
-        description: "Tenant created and unit assigned successfully",
+        title: "Tenant Created",
+        description: "The tenant has been successfully onboarded.",
         status: "success",
         duration: 3000,
-        variant: "subtle",
+        isClosable: true,
       });
-
       navigate("/allTenants");
     } catch (error) {
       toast({
         title: "Error",
-        description: error.response?.data?.message || "Something went wrong",
+        description: error.response?.data?.message || "Failed to create tenant",
         status: "error",
         duration: 3000,
+        isClosable: true,
       });
     } finally {
       setIsLoading(false);
     }
   };
+
 
   return (
     <Flex minH="100vh" align="center" justify="center" bg="#F7FAFC" py={12}>
@@ -130,6 +137,7 @@ const CreateTenant = () => {
               <CustomInput label="Phone" name="phone" icon={FiPhone} onChange={handleChange} />
               <CustomInput label="National ID" name="nationalId" icon={FiCreditCard} onChange={handleChange} />
               <CustomInput label="Emergency Contact" name="emergencyContact" icon={FiAlertCircle} onChange={handleChange} />
+              <CustomInput label="Deposit Amount" name="depositAmount" icon={FiDollarSign} onChange={handleChange} />
             </SimpleGrid>
 
             <Divider />
