@@ -228,7 +228,7 @@ const NavItem = ({ icon, children, active, to }) => {
 
 //
 
-const StatCard = ({ label, number, help, type, pct, color, icon }) => (  //
+const StatCard = ({ label, number, help, type, pct, color, icon }) => (  
   <Box
     p={6}
     bg="white"
